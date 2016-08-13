@@ -1,0 +1,114 @@
+#include <iostream>
+#include <stdexcept>  //异常类处理需要加的 
+#include "compute.h"
+#include <cstdlib>  //产生随机数 
+#include <ctime>    //产生随机数种子 
+using namespace std;
+
+void displayCircle(const Circle &c) {
+     cout << "半径为" << c.getRadius()
+             << "的圆面积: " << c.computeArea() << endl;
+}
+
+void printCircleArea_1(Circle c) {        // 值传递
+    cout << "半径为" << c.getRadius()
+            << "的圆面积: " << c.computeArea() << endl;
+}
+void printCircleArea_2(const Circle &c) {    // 引用传递,const以防对实参的误更改 
+    cout << "半径为" << c.getRadius()
+            << "的圆面积: " << c.computeArea() << endl;
+}
+void printCircleArea_3(Circle *c) {       // 指针传递
+    cout << "半径为" << c->getRadius()
+            << "的圆面积: " << c->computeArea() << endl;
+}
+
+double totalCircleArea(const Circle circleArray[], int arraySize) {
+    double total = 0.0;
+    for(int i = 0; i < arraySize; ++i)
+        total += circleArray[i].computeArea();
+    return total;
+}
+void printCircleArrayArea(const Circle circleArray[], int arraySize) {
+    cout << "半径\t圆面积" << endl;   //通过tab键来对齐 
+    for(int i = 0; i < arraySize; ++i)
+        cout << circleArray[i].getRadius() << "\t"
+                << circleArray[i].computeArea() << endl;
+    cout << "总面积\t" << totalCircleArea(circleArray, arraySize) << endl;
+}
+
+int main() {
+	
+//	cout<<fib(3)<<endl;
+//	cout<<gcd(27,54)<<endl;
+
+   /*演示 析构函数  静态成员*/
+//    cout << "当前对象数目: " << Circle::getNumberOfObjects() << endl;
+//    Circle c1;
+//    displayCircle(c1);
+//    Circle c2(5.5);
+//    displayCircle(c2);
+//    Circle *pCircle = new Circle(100);
+//    displayCircle(*pCircle);
+//    cout << "当前对象数目: " << Circle::getNumberOfObjects() << endl;
+//    delete pCircle;     // 显式销毁对象
+//    cout << "当前对象数目: " << Circle::getNumberOfObjects() << endl;
+
+   /*演示  参数传递 值传递 引用传递 指针传递  */
+//    Circle c1(5.5);
+//    Circle c2;
+////    printCircleArea_1(c1);
+////    printCircleArea_1(c2);
+////	printCircleArea_2(c1);  
+////	printCircleArea_2(c2);  //没有立刻析构 
+//	printCircleArea_3(&c1);
+//	printCircleArea_3(&c2); //没有立刻析构 
+
+	/*演示  对象数组*/
+//	const int ARRAY_SIZE = 5;
+//	Circle circleArray[ARRAY_SIZE];
+//    srand(time(NULL));
+//    for(int i = 0; i < ARRAY_SIZE; ++i)
+//        circleArray[i] = rand() % 100;
+//    printCircleArrayArea(circleArray, ARRAY_SIZE);
+
+	/*演示 异常类*/
+	/*超时*/ 
+//	cout << "输入两个整数，若输入^Z或^D则结束输入: ";
+//    int number1, number2, result;
+//    while(cin >> number1 >> number2) {
+//        try {
+//            result = divide(number1, number2);
+//            cout << number1 << "/" << number2 << "=" << result << endl;
+//        }
+//        catch(runtime_error &ex) {
+//            cerr << "发生异常: " << ex.what() << endl;
+//        }
+//        cout << "输入两个整数，若输入^Z或^D则结束输入: ";
+//    } 
+    /*超出有效范围*/
+//    intRange range(0, 100);
+//    int value;
+//    cout << "输入一个0～100之间的整数值" << endl;
+//    try {
+//        value = range.getValue();
+//        cout << "输入值: " << value << endl;
+//    }
+//    catch(out_of_range &ex) {
+//        cerr << "发生异常: " << ex.what() << endl;
+//    }
+
+	/*演示拷贝构造函数*/
+//	Circle c1(5.5);
+//    Circle c2(c1);      // 自动调用默认拷贝构造函数
+//    cout << "c1对象的半径为" << c1.getRadius() << endl;
+//    cout << "c2对象的半径为" << c2.getRadius() << endl;
+//    c1.setRadius(4.8);
+//    c2.setRadius(8.8);
+//    cout << "分别修改c1和c2对象的半径" << endl;
+//    cout << "c1对象的半径为" << c1.getRadius() << endl;
+//    cout << "c2对象的半径为" << c2.getRadius() << endl; 
+
+    
+	return 0;
+} 

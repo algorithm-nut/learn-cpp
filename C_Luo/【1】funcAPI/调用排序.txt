@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "compute.h"
+#include "count.h"
+#include "judge.h"
+#include "search.h"
+#include "sort.h"
+#include "show.h"
+
+
+#define ARRAY_SIZE 10
+#define FILENAME1 "input.txt"
+#define FILENAME2 "output.txt"
+
+
+int main (void) {
+	int num = 0, i=0, j=0;
+	int array[ARRAY_SIZE];
+	int tempArray[ARRAY_SIZE];  //为归并排序准备 
+	FILE *fp1, *fp2;
+	
+	fp1 = fopen(FILENAME1,"r");
+	if(fp1==NULL) {
+		printf("Failure to open the %s\n",FILENAME1);
+		exit(EXIT_FAILURE);
+	} 
+	i=0;
+	while(1) {
+	    fscanf(fp1,"%d",&num);
+	    if(num != -1) array[i++] = num;
+	    else          break;
+    }
+    fclose(fp1);
+	
+//	bubble_sort(array,ARRAY_SIZE);
+//    quick_sort(array, 0, ARRAY_SIZE-1);
+//    select_sort(array, ARRAY_SIZE);
+//    merge_sort(array, tempArray, 0, ARRAY_SIZE-1);
+    heap_sort(array, ARRAY_SIZE);
+    
+	print_array(array, ARRAY_SIZE);
+	fp2 = fopen(FILENAME2,"w");
+    for(i=0; i<ARRAY_SIZE; i++) {
+    	fprintf(fp2,"%-4d",array[i]);
+    }
+    fclose(fp2);
+	
+	return 0;
+}
