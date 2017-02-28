@@ -7,5 +7,3 @@
 + 03-algorithm
 + 04-item
 
-### link list
-+ 
