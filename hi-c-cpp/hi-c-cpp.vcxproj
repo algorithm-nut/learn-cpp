@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{971812B8-7D79-4C42-AF20-E1150B4BE321}</ProjectGuid>
+    <ProjectGuid>{5A5458C2-FCCE-418A-BE01-95F8F714F6BA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>hicpp</RootNamespace>
+    <RootNamespace>hiccpp</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,6 +74,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\app\studata.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\app\student.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

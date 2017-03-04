@@ -13,5 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\app">
+      <UniqueIdentifier>{fbf82591-6141-4992-8531-1e6c931eee96}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\app\studata.txt">
+      <Filter>源文件\app</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\app\student.c">
+      <Filter>源文件\app</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

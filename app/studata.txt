@@ -1,6 +1,0 @@
-5
-1	cheng	ÄÐ	1989-09-01	2008-05-01	math	math	723
-3	meng	Å®	1990-11-02	2009-12-03	math	math	823
-7	bon	ÄÐ	1991-09-08	2009-03-06	english	english	672
-8	lisi	ÄÐ	1989-10-08	2009-12-30	physics	physics	824
-10	sherry	Å®	1990-10-06	2009-09-01	economy	economy	711
