@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5A5458C2-FCCE-418A-BE01-95F8F714F6BA}</ProjectGuid>
+    <ProjectGuid>{D474C882-FACC-49BE-B044-3FE4A936C402}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>hiccpp</RootNamespace>
+    <RootNamespace>workspace</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,9 +39,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\hi-c-cpp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\hi-c-cpp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\hi-c-cpp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\hi-c-cpp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -74,10 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\app\studata.txt" />
+    <ClInclude Include="..\..\include\print.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\app\student.c" />
+    <ClCompile Include="..\..\lib\print.cpp" />
+    <ClCompile Include="test-print.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

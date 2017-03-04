@@ -1,4 +1,4 @@
-#include "compute.h"
+#include "../header/compute.h"
 #include <cmath>
 #include <iostream>
 #include <ctime>

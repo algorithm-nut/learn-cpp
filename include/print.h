@@ -64,7 +64,4 @@ void show_dynamicMemory_allocation();
 void addMatrix(int **a, int **b, int **c, int cRow, int cCol);
 void printMatrix(int **array, int arrayRow, int arrayCol);
 
- 
-
-
 #endif
