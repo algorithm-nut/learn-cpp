@@ -1,0 +1,168 @@
+#include <iostream>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+#include <ctime>   //生成随机数 
+#include "compute.h" 
+using namespace std;
+
+void displayCircle(const Circle &c) {
+     cout << "半径为" << c.getRadius()
+             << "的圆面积: " << c.computeArea() << endl;
+}
+
+int main() {
+	
+	/*演示 读入读出*/ 
+	ofstream outFile;
+	string str;
+    int i;
+    double d;
+    char ch;
+    outFile.open("example.txt");
+    if(!outFile.is_open()) {
+        cerr << "不能新建文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    outFile << "a-string" << " " << 65000 << " " << 3.14159 << " " << 'x'; 
+	outFile.close();                          //向文件中写入数据，然后关闭 
+	
+	ifstream inFile; 
+    inFile.open("example.txt");
+    if(!inFile.is_open()) {
+        cerr << "不能打开文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    inFile >> str >> i >> d >> ch;   //向文件读入并存放到对应变量
+	inFile.close();       //先关掉，不然后续操作是接着的 
+//    cout << str << endl;
+//    cout << i << endl;
+//    cout << d << endl;
+//    cout << c << endl;
+    
+    /*演示  复制文件*/ 
+    inFile.open("example.txt");
+    if(!inFile.is_open()) {
+        cerr << "不能打开文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    ofstream outFile2;     //out --  用于写入数据的文件 
+    outFile2.open("duplication.txt");
+    if(!outFile2.is_open()) {
+        cerr << "不能新建文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    /*演示  字符输入输出*/ 
+//    char ch;
+//    inFile.get(ch);
+//    while(!inFile.eof()) {
+//        outFile2.put(ch);
+//        inFile.get(ch);
+//    }
+    
+    /*演示  行输入输出*/ 
+    string line;
+    while(getline(inFile, line))
+        outFile2 << line << endl;
+
+    inFile.close();
+	outFile2.close();
+	
+	
+    /*演示对二进制文件的操作*/	
+	const int ARRAY_SIZE = 10;
+    int chunk[ARRAY_SIZE];
+    ofstream outFile3;
+    outFile3.open("example.dat", ios::binary);  
+	            //dat 二进制文件 后面指的是文件模式 
+    if(!outFile3.is_open()) {
+        cerr << "不能新建文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    srand(time(NULL));
+    for(int i = 0; i < ARRAY_SIZE; ++i)
+        chunk[i] = rand();
+    cout << "写入10个随机整数" << endl;
+    outFile3.write(reinterpret_cast<char *>(chunk), sizeof(chunk));
+             //将非字符数据块内存首地址强制转化为字符指针，块的大小 
+    outFile3.close();
+    
+    ifstream inFile2;
+    inFile2.open("example.dat", ios::binary);
+    if(!inFile2.is_open()) {
+        cerr << "不能打开文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    int result[ARRAY_SIZE];
+    cout << "读入10个整数" << endl;
+    inFile2.read(reinterpret_cast<char *>(result), sizeof(result));
+    for(int i = 0; i < ARRAY_SIZE; ++i)
+        cout << result[i] << " ";
+    cout << endl;
+  	inFile2.close();
+  	
+  	
+  	fstream ioFile;
+    ioFile.open("object.dat", ios::out | ios::binary);
+    if(!ioFile.is_open()) {
+        cerr << "不能新建文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    Circle c1;
+    Circle c2(5.5);
+    ioFile.write(reinterpret_cast<char *>(&c1), sizeof(Circle));
+    ioFile.write(reinterpret_cast<char *>(&c2), sizeof(Circle));
+    ioFile.close();
+    ioFile.open("object.dat", ios::in | ios::binary);   //重新打开 
+    if(!ioFile.is_open()) {
+        cerr << "不能打开文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    Circle c;
+    ioFile.read(reinterpret_cast<char *>(&c), sizeof(Circle));
+    displayCircle(c);
+    ioFile.read(reinterpret_cast<char *>(&c), sizeof(Circle));
+    displayCircle(c);
+             //都是从文件中读取一个对象存放在c中，然后显示内容 
+    ioFile.close();
+    
+    
+    /*演示文件定位*/
+    fstream ioFile2;
+    ioFile2.open("object.dat", ios::in | ios::out | ios::trunc | ios::binary);
+    if(!ioFile2.is_open()) {
+        cerr << "不能打开文件!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    Circle c3(3);
+    Circle c4(4);
+    Circle c5(5);
+    ioFile2.write(reinterpret_cast<char *>(&c1), sizeof(Circle));
+    ioFile2.write(reinterpret_cast<char *>(&c2), sizeof(Circle));
+    ioFile2.write(reinterpret_cast<char *>(&c3), sizeof(Circle));
+    ioFile2.write(reinterpret_cast<char *>(&c4), sizeof(Circle));
+    ioFile2.write(reinterpret_cast<char *>(&c5), sizeof(Circle));
+    Circle ca;
+    cout << "显示第3个圆对象"<< endl;
+    ioFile2.seekg(2 * sizeof(Circle), ios::beg);
+    cout << "当前位置: " << ioFile2.tellg() << endl;
+    ioFile2.read(reinterpret_cast<char *>(&ca), sizeof(Circle));
+    displayCircle(ca);
+    cout << "当前位置: " << ioFile2.tellg() << endl;
+    cout << "更改第3个圆对象的半径为100" << endl;
+    ca.setRadius(100);
+    ioFile2.seekp(2 * sizeof(Circle), ios::beg);
+    ioFile2.write(reinterpret_cast<char *>(&ca), sizeof(Circle));
+    Circle cb;
+    ioFile2.seekg(2 * sizeof(Circle), ios::beg);
+                 //seekp,tellp用于文件输出流对象
+				 //seekg,seekg用于文件输入流对象      
+    ioFile2.read(reinterpret_cast<char *>(&cb), sizeof(Circle));
+    displayCircle(cb);
+    ioFile2.close();
+	
+	 
+	
+	return 0;
+}

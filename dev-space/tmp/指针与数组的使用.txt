@@ -1,0 +1,178 @@
+	#define ARRAY_SIZE 6
+	#define STRING_LENGTH 80
+	#define ROW_SIZE 10
+	#define COLUMN_SIZE 10
+	
+	
+	
+	
+	int a=8, b=7;
+	int array[ARRAY_SIZE] = {0,1,2,3,4,5}; 
+	
+    printf("%d\n",MAX(1,3,2));
+    printf("%d\n",MAX2(7,3));
+    printf("%d\n",MAX3(1,3,2));
+
+	show_detailofPointer();
+	 
+	swap(&a, &b);  //参数是指针，也就是地址 
+	printf("a=%d b=%d\n",a,b); 
+	
+	show_assignment();
+	show_voidPointer(); 
+	show_const_pointer();
+	
+    printf("较大值是%d\n", *maxbyPointer(&a, &b));
+    
+    int (*pf)(int, int);
+    pf = sum;
+    printf("sum        :%d\n", pf(a, b));
+    pf = difference;
+    printf("difference :%d\n", pf(a, b));
+    pf = product;
+    printf("product    :%d\n", pf(a, b));
+
+    printf("sum        :%d\n", any_function(sum       , a, b));
+    printf("difference :%d\n", any_function(difference, a, b));
+    printf("product    :%d\n", any_function(product   , a, b));
+    
+    printf("   x        sin(x)");
+    printf("\n-------    -------\n");
+    tabulate(sin, 0, 0.5, 0.1);
+    printf("   x        cos(x)");
+    printf("\n-------    -------\n");
+    tabulate(cos, 0, 0.5, 0.1);
+    printf("   x        tan(x)");
+    printf("\n-------    -------\n");
+    tabulate(tan, 0, 0.5, 0.1);
+
+	compute_averageAge();
+	compute_averageScore()
+	count_averageAge();
+	count_randNum(1000);
+
+	if(judge_repeatedNum(1232))  printf("有重复数字\n");
+	else                         printf("没有重复数字\n");
+
+	reverseArray(array, ARRAY_SIZE);
+	print_array(array , ARRAY_SIZE);
+
+	compute_dayNumofYear(2012, 3, 7);
+	
+	
+	int matrix[ROW_SIZE][COLUMN_SIZE];
+    srand(time(NULL));
+    int row, column;
+    for(row = 0; row < ROW_SIZE; ++row) {
+        for(column = 0; column < COLUMN_SIZE; ++column) {
+            matrix[row][column] = 10 + rand() % 90;
+        }
+    }
+    
+    printMatrix(matrix, ROW_SIZE, COLUMN_SIZE);
+    indexofMatrix(matrix);
+    transposeMatrix(matrix, ROW_SIZE, COLUMN_SIZE);
+    printf("行列互换后的矩阵: \n");
+    printMatrix(matrix, ROW_SIZE, COLUMN_SIZE);
+    indexofMatrix(matrix);
+    
+    show_detailofArray();
+
+	int i, j;
+    int aRow, aCol;
+    int bRow, bCol;
+    int cRow, cCol;
+    int **a, **b, **c;
+    
+    printf("请输入矩阵A的行数和列数: ");
+    scanf("%d%d", &aRow, &aCol);
+    bRow = aCol;        
+    printf("请输入矩阵B的列数: ");
+    scanf("%d", &bCol);
+    cRow = aRow;        
+    cCol = bCol;          
+    a = (int **)malloc(sizeof(int *) * aRow);
+    for(i = 0; i < aRow; ++i)
+        a[i] = (int *)malloc(sizeof(int) * aCol);
+    b = (int **)malloc(sizeof(int *) * bRow);
+    for(i = 0; i < bRow; ++i)
+        b[i] = (int *)malloc(sizeof(int) * bCol);
+    c = (int **)malloc(sizeof(int *) * cRow);
+    for(i = 0; i < cRow; ++i)
+        c[i] = (int *)malloc(sizeof(int) * cCol);
+        
+    printf("请输入矩阵A[%d][%d]的值\n", aRow, aCol);
+    for(i = 0; i < aRow; ++i)
+        for(j = 0; j < aCol; ++j)
+            scanf("%d",&a[i][j]);
+    printf("请输入矩阵B[%d][%d]的值\n", bRow, bCol);
+    for(i = 0; i < bRow; ++i)
+        for(j = 0; j < bCol; ++j)
+            scanf("%d",&b[i][j]);
+            
+    mulMatrix(a, b, c, cRow, cCol, aCol);
+    printf("矩阵A和矩阵B的乘积\n");
+    print_mulMatrix(c, cRow, cCol);
+    
+    int i;
+    double array[ARRAY_SIZE];
+    srand(time(NULL));
+    for(i = 0; i < ARRAY_SIZE; ++i)
+        array[i] = rand() % 1000;
+    print_doubleArray(array, ARRAY_SIZE);
+    printf("均值是     %-6.2f\n", mean(array, ARRAY_SIZE));
+    printf("标准偏差是 %-6.2f\n", deviation(array, ARRAY_SIZE));
+
+
+	char str[STRING_LENGTH + 1];
+	printf("%d\n",readString(str, STRING_LENGTH));
+
+	char str1[STRING_LENGTH + 1];
+	char str2[STRING_LENGTH + 1];
+	printf("输入字符串1: ");
+    gets(str1);
+    printf("输入字符串2: ");
+    gets(str2);
+    printf("字符串1长度: %d\n", count_length(str1));
+    printf("字符串2长度: %d\n", count_length(str2));
+    concatenate(str1, str2);
+    printf("字符串1和字符串2连接后的字符串: %s\n", str1);
+    
+    
+    char string[5][STRING_LENGTH + 1]; 
+	char *pStr[5];            // 指向最长的字符串   
+    size_t maxLength = 0;     // 字符串的最大长度 
+    int count = 0;            // 最长字符串的个数
+    int i; 
+    for(i = 0; i < 5; ++i) {
+        printf("请输入字符串%d: ", i + 1);
+        gets(string[i]);
+        if(strlen(string[i]) > maxLength)
+            maxLength = strlen(string[i]);       
+    }
+    for(i = 0; i < 5; ++i) {  // 最长字符串可能有多个 
+         if(strlen(string[i]) == maxLength) {
+             pStr[count] = string[i];
+             ++count;
+         }
+    }
+    printf("最长的字符串:\n");
+    for(i = 0; i < count; ++i)
+        printf("%s\n", pStr[i]);
+
+	int arraySize;
+    int *arrayPointer; 
+    
+    printf("请输入数组元素个数: ");
+    scanf("%d", &arraySize);
+    arrayPointer = (int *)malloc(arraySize * sizeof(int));
+	if(arrayPointer == NULL) {
+		printf("malloc函数分配失败!\n");
+		exit(EXIT_FAILURE);
+	}
+    srand(time(NULL));
+    int i=0; 
+    for(i = 0; i < arraySize; ++i)
+        arrayPointer[i] = rand() % 100;
+    print_array(arrayPointer, arraySize);
+    free(arrayPointer);

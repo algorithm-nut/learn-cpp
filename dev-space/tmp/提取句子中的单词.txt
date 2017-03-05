@@ -1,0 +1,16 @@
+/* 例4_18.cpp */
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+int main() {
+    cout << "输入一个句子: " << endl;
+    string line;
+    getline(cin, line);
+    cout << "提取句子中的单词:" << endl;
+    istringstream istrm(line);
+    string word;
+    while(istrm >> word)
+            cout << word << endl;
+    return 0;
+}

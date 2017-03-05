@@ -1,0 +1,21 @@
+/* Àý4_16.cpp */
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+    const int ARRAY_SIZE = 5;
+    string str[ARRAY_SIZE];
+    string::size_type maxLength = 0;
+    for(int i = 0; i < ARRAY_SIZE; ++i) {
+        cout << "ÇëÊäÈë×Ö·û´®" << (i + 1) << ": ";
+        getline(cin, str[i]);
+        if(str[i].size() > maxLength)
+            maxLength = str[i].size();
+    }
+    cout << "×î³¤µÄ×Ö·û´®:\n";
+    for(int i = 0; i < ARRAY_SIZE; ++i) {
+         if(str[i].size() == maxLength)
+             cout << str[i] << endl;
+    }
+    return 0;
+}
