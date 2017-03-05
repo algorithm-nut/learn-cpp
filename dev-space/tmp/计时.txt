@@ -1,7 +1,0 @@
-    clock_t start, end;
-    start = clock();
-	print_narNum();
-	print_isomorphNum();
-	print_completeNum();
-    end = clock();
-    printf("运行时间: %f秒\n", (double)(end - start) / CLOCKS_PER_SEC);

@@ -3,8 +3,7 @@ using namespace std;
 
 int main()
 {
-	char hello[6] = "hello";
-	cout << hello;
+
 	
 //   	cout << "Size of char : " << sizeof(char) << endl;
 //   	cout << "Size of int : " << sizeof(int) << endl;
